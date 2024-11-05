@@ -1,0 +1,9 @@
+.active {
+    color: #FFD700; /* Change this to your preferred color */
+    font-weight: bold; /* Optional: make it bold */
+  }
+  
+  .active-link {
+    background-color: #05fc4f49; /* Optional: add background color */
+  }
+  
