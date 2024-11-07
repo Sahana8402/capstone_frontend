@@ -37,7 +37,6 @@
 
     <!-- Authentication section (right-aligned) -->
     <div class="navbar-nav ml-auto">
-      <!-- User dropdown for authenticated users -->
       <div *ngIf="isLoggedIn" class="nav-item dropdown">
         <a 
           class="nav-link dropdown-toggle d-flex align-items-center text-white" 
@@ -56,11 +55,78 @@
           <a class="dropdown-item text-danger" (click)="onLogout()">Logout</a>
         </div>
       </div>
-      
-      <!-- Login and Register buttons for unauthenticated users -->
+
       <button *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-outline-light mx-1" style="font-size: 1.1rem;">Login</button>
       <button *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-outline-light mx-1" style="font-size: 1.1rem;">Register</button>
     </div>
   </div>
 </nav>
-<p>carpooling works!</p>
+
+<div class="con1" style="background-color: rgb(232, 240, 221);height: 100%;">
+<div class="con" style="background-color: rgb(232, 240, 221); height: auto;">
+  <h2 class="text-center">Carpooling</h2>
+  <div class="row">
+    <!-- Form Column -->
+    <div class="col-md-6">
+      <div class="card p-4 shadow-sm">
+        <h4 class="text-center mb-4">Search Cars</h4>
+        <form [formGroup]="carSearchForm" (ngSubmit)="onSearch()">
+          <div class="form-group">
+            <label for="source">Source:</label>
+            <input
+              id="source"
+              type="text"
+              formControlName="source"
+              class="form-control"
+              placeholder="Enter source location"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="destination">Destination:</label>
+            <input
+              id="destination"
+              type="text"
+              formControlName="destination"
+              class="form-control"
+              placeholder="Enter destination"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="carSearchForm.invalid">
+            Search Cars
+          </button>
+        </form>
+
+        <div *ngIf="searchSubmitted && carpools.length === 0" class="alert alert-warning mt-4">
+          No cars available for the selected route.
+        </div>
+      </div>
+
+      <div *ngIf="carpools.length > 0" class="mt-4">
+        <h5 class="text-center mb-3">Available Cars</h5>
+        <div *ngFor="let carpool of carpools" class="card mb-3">
+          <div class="card-body">
+            <h6 class="card-title">Driver: {{ carpool.driverName }}</h6>
+            <p class="card-text"><strong>Car:</strong> {{ carpool.carName }}</p>
+            <p class="card-text"><strong>Pickup Location:</strong> {{ carpool.pickupLocation }}</p>
+            <p class="card-text"><strong>Date:</strong> {{ carpool.date | date: 'medium' }}</p>
+            <button class="btn btn-outline-primary btn-sm" (click)="reserveCarpool(carpool)">Reserve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <img
+        src="https://energytheory.com/wp-content/uploads/2023/09/Benefits-of-Carpooling-For-the-Environment-1024x683.png"
+        alt="Carpooling"
+        class="img-fluid rounded shadow-sm"
+        style="max-height: 400px;"
+      />
+    </div>
+  </div>
+</div>
+</div>

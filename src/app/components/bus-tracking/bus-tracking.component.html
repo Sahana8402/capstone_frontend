@@ -64,12 +64,12 @@
   </div>
 </nav>
 
-
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Bus Tracking</h2>
+<div class="con1" style="background-color: #effcfc; height: 100%;">
+<div class="con" style="background-color: #effcfc; height:max-content;">
+  <h2 class="text-center">Bus Tracking</h2>
   <div class="row">
     <!-- Form Column -->
-    <div class="col-md-6">
+    <div class="col">
       <div class="card p-4 shadow-sm">
         <h4 class="text-center mb-4">Search Buses</h4>
         <form [formGroup]="busSearchForm" (ngSubmit)="onSearch()">
@@ -103,9 +103,9 @@
         </form>
 
         <!-- No Buses Found Message -->
-        <div *ngIf="searchSubmitted && buses.length === 0" class="alert alert-warning mt-4">
+        <!-- <div *ngIf="searchSubmitted && buses.length === 0" class="alert alert-warning mt-4">
           No buses available for the selected route.
-        </div>
+        </div> -->
       </div>
 
       <!-- Bus Cards Section -->
@@ -126,11 +126,12 @@
     <!-- Image Column -->
     <div class="col-md-6 d-flex align-items-center justify-content-center">
       <img
-        src="https://res.cloudinary.com/dp8bdt1zu/image/upload/v1730697170/hyuymgxfzwzxib7mnsqp.jpg"
+        src="https://cms.trackon-gps.com/media/vehicles/bus-gps-tracker.webp"
         alt="Bus Tracking"
         class="img-fluid rounded shadow-sm"
         style="max-height: 400px;"
       />
     </div>
   </div>
+</div>
 </div>
